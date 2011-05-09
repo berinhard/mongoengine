@@ -19,3 +19,11 @@ class MongoTestCase(TestCase):
             if collection == 'system.indexes':
                 continue
             self.db.drop_collection(collection)
+
+    def _fixture_setup(self):
+        '''
+        Overwrites this Django TestCase function to run smoothly with MongoDB.
+        Without this, Django tries to create a normal database using its database dict
+        '''
+        pass
+
