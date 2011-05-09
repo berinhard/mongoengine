@@ -23,7 +23,9 @@ class MongoTestCase(TestCase):
     def _fixture_setup(self):
         '''
         Overwrites this Django TestCase function to run smoothly with MongoDB.
-        Without this, Django tries to create a normal database using its database dict
+        Without this, everytime Django tries to create a normal database using its database dict
         '''
-        pass
-
+        if not settings.DATABASES or settings.DATABASE_ENGINE:
+            pass
+        else:
+            super(TestCase, self)._fixture_setup(self)
